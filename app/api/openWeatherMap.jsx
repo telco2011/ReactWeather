@@ -7,14 +7,21 @@ module.exports = {
     var encodedLocation = encodeURIComponent(location);
     var requestUrl = `${OPEN_WEATHER_MAP_URL}&q=${encodedLocation}`;
     
+    function capitalizeSentence (text) {
+      return text.replace(/\b\w/g, l => l.toUpperCase());
+    }
+
     return axios.get(requestUrl).then(function (res) {
       if (res.data.cod && res.data.message) {
-        throw new Error(res.data.message);
+        //debugger;
+        throw new Error(capitalizeSentence(res.response.data.message));
       } else {
+        //debugger;
         return res.data.main.temp;
       }
-    }, function (res) {
-      throw new Error(res.data.message);
+    }, function (err) {
+      //debugger;
+      throw new Error(capitalizeSentence(err.response.data.message));
     });
   }
 }
