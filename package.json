@@ -1,5 +1,5 @@
 {
-  "name": "ReactWeather",
+  "name": "react-weather",
   "version": "1.0.0",
   "description": "React weather app",
   "main": "server.js",
